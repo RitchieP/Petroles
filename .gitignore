@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/debug/res/values/google_maps_api.xml
+/release/res/values/google_maps_api.xml
