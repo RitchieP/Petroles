@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .title("Marker"));
     }
 
+    //Lifecycle of the map
     @Override
     protected void onStart() {
         super.onStart();
