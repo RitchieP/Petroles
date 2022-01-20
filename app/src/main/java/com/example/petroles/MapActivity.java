@@ -60,6 +60,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         if (locationPermissionGranted) {
             getDeviceLocation();
+            // Testing branch
 
             // Last check on permission before locating on maps
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
