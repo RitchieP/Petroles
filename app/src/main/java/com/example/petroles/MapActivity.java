@@ -184,5 +184,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    // TODO: Create a function to search for charging stations
+
 
 }
