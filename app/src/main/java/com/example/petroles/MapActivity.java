@@ -8,19 +8,35 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -31,10 +47,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_REQUEST_CODE = 100;
     private Boolean locationPermissionGranted = false;
+    private boolean cameraSet = false;
 
     // Object declaration
     private FusedLocationProviderClient fusedLocationProviderClient;
     private GoogleMap gMap;
+    LocationRequest locationRequest;
+    Marker currentLocationMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,78 +68,77 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
+
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         }
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Stop location update when MapActivity is not in use
+        if (fusedLocationProviderClient != null) {
+            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        }
     }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         Toast.makeText(this, "Map is ready", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onMapReady: Map is ready");
+        gMap = googleMap;
 
-        if (locationPermissionGranted) {
-            getDeviceLocation();
-            // Testing branch
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(5000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-            // Last check on permission before locating on maps
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-
-            googleMap.setMyLocationEnabled(true);
-        }
-    }
-
-    private void getDeviceLocation() {
-        Log.d(TAG, "getDeviceLocation: getting device's current location");
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-        try {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (locationPermissionGranted) {
-                final Task location = fusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        /*
-                            If things go right, it should be able to get the location
-                            Then get the Latitude and Longitude of the current location
-                            And then move the camera to the current location
-                        */
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "onComplete: location found!");
-                            Location currentLocation = (Location) task.getResult();
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
 
-                            // Creating a new LatLng object with the current location lat and lng
-                            LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                            Log.d(TAG, "onComplete: moving camera to lat: " + latLng.latitude +
-                                   ", lng: " + latLng.longitude);
-
-                            /*
-                                Check whether the gMap object is null or not before moving the camera
-                                Because the moveCamera function might be called before the map is ready
-                                and initialized. Causing a NullPointerException
-                            */
-                            if (gMap != null) {
-                                // Move the camera to current location with lat and lng
-                                gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, ZOOM));
-                            }
-
-                        } else {
-                            // Log the error message and create a toast to show the error
-                            Log.d(TAG, "onComplete: Unable to get current location, it could be null");
-                            Toast.makeText(MapActivity.this, "Unable to get location", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+                        locationCallback, Looper.myLooper());
+                gMap.setMyLocationEnabled(true);
+            } else {
+                getLocationPermission();
             }
-        } catch (SecurityException e) {
-            // Log the error where no permission is granted
-            Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage());
+        } else {
+            fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+                    locationCallback, Looper.myLooper());
+            gMap.setMyLocationEnabled(true);
         }
     }
+
+    LocationCallback locationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(@NonNull LocationResult locationResult) {
+            List<Location> locationList = locationResult.getLocations();
+            if (locationList.size() > 0) {
+                // Get the newest location on the list
+                Location location = locationList.get(locationList.size() - 1);
+                Log.i(TAG, "Location: " + location.getLatitude() + " " + location.getLongitude());
+
+                if (currentLocationMarker != null) {
+                    currentLocationMarker.remove();
+                }
+
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+                // Zoom into the place once only, so user is free to scroll around the map
+                if (!cameraSet) {
+                    gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, ZOOM));
+                    cameraSet = true;
+                }
+            }
+        }
+    };
 
     // Function to ask for user's permission to access location
     private void getLocationPermission() {
