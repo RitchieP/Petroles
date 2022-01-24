@@ -13,6 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <!-- TODO: Create a button to search for stations -->
+    <Button
+        android:id="@+id/button_findStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Stations"
+        app:layout_constraintBottom_toBottomOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/map"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.925" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
