@@ -121,6 +121,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d(TAG, "onMapReady: Map is ready");
         gMap = googleMap;
 
+        /*
+            Make a location request every ten seconds. This is to enable the update of
+            location every 10 seconds.
+         */
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(5000);
@@ -269,10 +273,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 c++;
             }
-//            } else {
-//                Toast.makeText(this, "No locations found.", Toast.LENGTH_SHORT).show();
-//                Log.e(TAG, "locateStation: no charging stations located");
-//            }
 
         } catch (ApiException e) {
             e.printStackTrace();
@@ -281,58 +281,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        Geocoder geocoder = new Geocoder(MapActivity.this);
-//        List<Address> list = new ArrayList<>();
-//
-//        if (isInternetAvailable() && isNetworkConnected())  {
-//            try {
-//                list = geocoder.getFromLocationName("Penang", 3);
-//                if (list.size() > 0) {
-//                    // Create an array of addresses found
-//                    Address[] addresses = new Address[list.size()];
-//                    for (int i = 0; i < list.size(); i++) {
-//                        addresses[i] = list.get(i);
-//                    }
-//                    Log.d(TAG, "locateStation: number of locations found: " + list.size());
-//                } else {
-//                    Log.d(TAG, "locateStation: no locations were found");
-//                }
-//            } catch (IOException e) {
-//                Log.e(TAG, "locateStation: IOException: " + e);
-//            }
-//
-//        // Else if statement to know which error is occurring
-//        } else if (!isInternetAvailable()) {
-//            Log.e(TAG, "locateStation: isInternetAvailable: No internet available");
-//        } else if (!isNetworkConnected()) {
-//            Log.e(TAG, "locateStation: isInternetAvailable: No network connected");
-//        } else {
-//            Log.e(TAG, "locateStation: isInternetAvailable: Unidentified error");
-//        }
-
-    }
-
-    // To check if device is connected to network
-    private boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
-
-    // To check if network connected has internet connection
-    private boolean isInternetAvailable() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-            int exitValue = ipProcess.waitFor();
-            return (exitValue == 0);
-        } catch (IOException e) {
-            Log.e(TAG, "isInternetAvailable: No internet available. " + e.getMessage());
-
-        } catch (InterruptedException e) {
-            Log.e(TAG, "isInternetAvailable: No internet available. " + e.getMessage());
-        }
-        return false;
     }
 
     @Override
