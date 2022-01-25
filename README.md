@@ -11,5 +11,5 @@ This is an app developed by a group of students from [Universiti Sains Malaysia]
 
 ###To run this project
 1. Make sure you get an API key from [Google Cloud Console](https://console.cloud.google.com/home/dashboard?)
-   1. ![Google cloud API image](Readme_Images/Screenshot 2022-01-25 221135.png)
+   1. [Google cloud API image](Readme_Images/Screenshot 2022-01-25 221135.png)
 2. 
