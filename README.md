@@ -13,8 +13,8 @@ If the project is missing a API key, please follow the instructions below.
 
 ###To run this project
 1. Make sure you get an API key from [Google Cloud Console](https://console.cloud.google.com/home/dashboard?)
-   1. ![Google cloud API image](https://github.com/RitchieP/Petroles/blob/main/Readme_Images/Screenshot%202022-01-25%20221135.png)<br>Select APIs and Services. Then Credentials.
-   2. ![API Key credential](https://github.com/RitchieP/Petroles/blob/main/Readme_Images/Screenshot%202022-01-25%20235357.png)<br>Press on API key
+   1. <br>![Google cloud API image](https://github.com/RitchieP/Petroles/blob/main/Readme_Images/Screenshot%202022-01-25%20221135.png)<br>Select APIs and Services. Then Credentials.
+   2. <br>![API Key credential](https://github.com/RitchieP/Petroles/blob/main/Readme_Images/Screenshot%202022-01-25%20235357.png)<br>Press on API key
    3. Copy the API key created
 2. Go to the ```local.properties``` file.
 3. Type in ```GMP_KEY= YOUR_API_KEY```. Replace the YOUR_API_KEY with the API key you copied.
