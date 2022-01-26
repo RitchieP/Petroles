@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="medium_sky_blue">#FF81D7EA</color>
+    <color name="out_of_blue">#BAF6E2</color>
     <color name="wild_caribbean_green">#FF20E2A1</color>
     <color name="pantone">#FF1CAF94</color>
     <color name="black_river_fall">#FF343C54</color>
@@ -8,4 +9,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue_green">#FF147E6B</color>
+    <color name="fence_green">#FF073129</color>
 </resources>
