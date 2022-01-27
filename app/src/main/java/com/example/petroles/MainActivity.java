@@ -8,11 +8,11 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity{
 
     private static final String TAG = "MainActivity";
-
-
 
 
     @Override
@@ -29,5 +29,11 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+    }
+
+    public void logout(View view){
+        FirebaseAuth.getInstance().signOut(); // Logout
+        startActivity(new Intent(getApplicationContext(), Login.class)); // Sending them to log in class
+        finish();
     }
 }
