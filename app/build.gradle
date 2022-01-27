@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.gms.google-services'
 }
 
 def getApiKey() {
@@ -11,7 +12,7 @@ def getApiKey() {
 
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.petroles"
@@ -54,6 +55,7 @@ dependencies {
     implementation 'com.google.android.libraries.places:places:2.5.0'
     implementation 'com.google.maps:google-maps-services:2.0.0'
     implementation 'org.slf4j:slf4j-simple:1.7.25'
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
