@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/petroles_main_page_background"
+    android:background="@drawable/petroles_main_page"
+    android:theme="@style/Theme.AppCompat.NoActionBar"
     tools:context=".MainActivity">
-
 
     <Button
         android:id="@+id/button_openMap"
