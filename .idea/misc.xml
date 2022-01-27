@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/user/Documents/GitHub/Petroles/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Document/USM/Petroles_project/app/src/main/res/drawable/find_station_btn.xml" value="0.12083333333333333" />
+        <entry key="..\:/Document/USM/Petroles_project/app/src/main/res/drawable/open_map_btn.xml" value="0.12685185185185185" />
+        <entry key="..\:/Document/USM/Petroles_project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Document/USM/Petroles_project/app/src/main/res/layout/activity_map.xml" value="0.264" />
+        <entry key="..\:/Document/USM/Petroles_project/app/src/main/res/layout/find_station_btn.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/user/Documents/GitHub/Petroles/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/GitHub/Petroles/app/src/main/res/layout/activity_map.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/GitHub/Petroles/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/GitHub/Petroles/app/src/main/res/layout/fragment_first.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/GitHub/Petroles/app/src/main/res/layout/fragment_second.xml" value="0.264" />
-        <entry key="..\:/Users/user/Documents/GitHub/Petroles/app/src/main/res/layout/splash_activity.xml" value="0.34479166666666666" />
       </map>
     </option>
   </component>
@@ -17,5 +21,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
