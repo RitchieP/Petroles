@@ -19,13 +19,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
-
-        <item name="android:textSize">16dp</item>
-        <item name="android:textColor">@color/black_river_fall</item>
-        <item name="android:fontFamily">varta</item>
-
-    </style>
 
     <style name="Theme.Petroles.NoActionBar">
         <item name="windowActionBar">false</item>
