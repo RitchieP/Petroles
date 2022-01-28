@@ -25,7 +25,7 @@ For firebase, you will need to create a Firebase Config file and place it in the
 Check out [here](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article) for more information. <br>
 #### Contact us
 Another method is to contact us directly through our emails. <br>
-> [Ritchie](ritchiepoh@gmail.com)<br>
-> [Jun Bin](chiajunbin007@gmail.com)<br>
-> [Ming Hui](tiewminghui@gmail.com)<br>
-> [Pei Yong]()
+> [Ritchie](mailto:ritchiepoh@gmail.com)<br>
+> [Jun Bin](mailto:chiajunbin007@gmail.com)<br>
+> [Ming Hui](mailto:tiewminghui@gmail.com)<br>
+> [Pei Yong](mailto:peiyong0890@gmail.com)
