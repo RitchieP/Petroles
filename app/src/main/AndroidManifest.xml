@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.petroles">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -20,6 +19,13 @@
         android:roundIcon="@drawable/petroles"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petroles">
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/splash_background" />
@@ -39,7 +45,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${GMP_KEY}" />
 
-        <activity android:name=".MainActivity"></activity>
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -48,7 +57,7 @@
         <activity
             android:name=".Splash_Activity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
