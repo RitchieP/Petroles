@@ -19,14 +19,10 @@ If the project is missing an API key, please follow the instructions below.
 2. While in the Google Cloud Console press on this button somewhere on the top right corner<br>![Enable API](https://github.com/RitchieP/Petroles/blob/main/Readme_Images/Enable_API_Services.png)
 3. Search for "Maps SDK for Android", "Places API", and "Geocoding API" and enable them if they're not enabled.
 4. Go to the ```local.properties``` file.
-5. Type in ```GMP_KEY= YOUR_API_KEY```. Replace the YOUR_API_KEY with the API key you copied.
-<br>
-<br>
+5. Type in ```GMP_KEY= YOUR_API_KEY```. Replace the YOUR_API_KEY with the API key you copied. <br>
 #### Firebase
 For firebase, you will need to create a Firebase Config file and place it in the "app" folder. <br>
-Check out [here](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article) for more information.
-<br>
-<br>
+Check out [here](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article) for more information. <br>
 #### Contact us
 Another method is to contact us directly through our emails. <br>
 > [Ritchie](ritchiepoh@gmail.com)<br>
