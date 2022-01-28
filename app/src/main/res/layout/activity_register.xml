@@ -114,7 +114,7 @@
         app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone"
-        app:layout_constraintVertical_bias="0.147" />
+        app:layout_constraintVertical_bias="0.152" />
 
     <TextView
         android:id="@+id/createText"
